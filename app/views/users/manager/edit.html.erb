@@ -1,0 +1,232 @@
+<% title '个人信息' %>
+
+<%- model_class = User -%>
+
+<% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@user.errors.count, '错误') %>:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<div class="headline">
+  <h3>个人信息</h3>
+</div>
+
+<%= simple_form_for @user, :url => '/users/manager/update' do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label" for="user_email">
+            <%= model_class.human_attribute_name(:email) %>
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label" id="user_email">
+              <%= @user.email %>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group receipt_logo optional receipt_logo">
+          <label class="receipt_logo optional col-md-4 control-label" for="receipt_logo">
+            <%= model_class.human_attribute_name(:name) %>
+          </label>
+          <div class="col-md-8">
+            <label class="receipt_logo optional control-label" id="receipt_logo">
+              <%= @user.name %>
+            </label>
+          </div>
+        </div>
+
+        <%= f.input :phone %>
+
+        <div class="form-group point optional user_point">
+          <label class="point optional col-md-4 control-label" for="user_point">
+            收件人
+          </label>
+          <div class="col-md-8">
+            <%= link_to '收件人列表', shipping_buyer_receivers_path, {:class => 'btn-u'} %>
+          </div>
+        </div>
+
+        <div class="form-group point optional user_point">
+          <label class="point optional col-md-4 control-label" for="user_point">
+            <%= model_class.human_attribute_name(:point) %>
+          </label>
+          <div class="col-md-8">
+            <label class="point optional control-label" id="user_point">
+              <%= @user.point %>
+            </label>
+          </div>
+        </div>
+
+        <%= f.input :weibo %>
+        <%= f.input :weixin %>
+
+        <div class="form-group point optional user_point">
+          <label class="point optional col-md-4 control-label" for="user_point">
+            分享到
+          </label>
+
+          <div class="col-md-8">
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style_32x32">
+              <a class="jiathis_button_weixin"></a>
+              <a class="jiathis_button_tsina"></a>
+            </div>
+
+
+            <h4>
+              &nbsp;&nbsp;
+              <i class="icon-hand-right"></i>
+              <%= link_to '完善并分享注册信息赚取积分', point_guide_shipping_buyer_helps_path, class: 'color-orange h4' %>
+            </h4>
+
+            <script type="text/javascript">
+                var jiathis_config = {
+                    url: "http://www.superhaitao.com",
+                    title: "亲们! 我在超级海淘注册了一个账号, 网址是:www.superhaitao.com, 超级海淘是一家最专业的欧洲海淘服务提供商。",
+                    boldNum: 2,
+                    pic: "http://www.superhaitao.com/logo.png",
+                    shortUrl: false,
+                    hideMore: true
+                }
+            </script>
+            <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+            <!-- JiaThis Button END -->
+          </div>
+        </div>
+
+        <div class="form-group point optional user_point">
+          <label class="point optional col-md-4 control-label" for="user_point">
+          </label>
+          <div class="col-md-8">
+              <h4>
+                <i class="icon-hand-right"></i>
+                <%= link_to '五分钟上手攻略', superhaitao_guide_shipping_buyer_helps_path, class: 'color-orange h4' %>
+              </h4>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <%= f.button :submit, '保存', :class => 'btn-u pull-right' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="headline">
+      <h3>代收—收货地址</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            名(Vorname)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              <%= @user.name %>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            姓(Nachaname)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              CundXGmbH
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            街道(Straße)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              Siemensstr
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            门牌(Hausnummer)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              14
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            城市(Stadt)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              Neuss
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            国家(Land)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              Deutschland
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            邮编(Postleitzahl)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              41469
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group email optional user_email">
+          <label class="email optional col-md-4 control-label text-success h4" for="user_email">
+            电话(Tel)
+          </label>
+          <div class="col-md-8">
+            <label class="email optional control-label text-success h4" id="user_email">
+              02131-3835006
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

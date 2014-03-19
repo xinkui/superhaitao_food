@@ -1,0 +1,62 @@
+<div class="header">
+  <div class="navbar navbar-default" role="navigation" >
+    <div class="container">
+
+      <%=render :partial => 'shared/logo' %>
+
+      <div class="collapse navbar-collapse navbar-responsive-collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+            <!--如果没有登录，只显示帮助-->
+            <% if current_user %>
+
+            <li>
+              <%= link_to('重量', shipping_admin_weights_path)%>
+            </li>
+
+            <li>
+              <%= link_to('价格', shipping_admin_prices_path)%>
+            </li>
+
+            <li>
+              <%= link_to('货品管理', shipping_admin_items_path)%>
+            </li>
+
+            <li>
+              <%= link_to('订单管理', shipping_admin_orders_path) %>
+            </li>
+
+            <li>
+              <%= link_to('SKU管理', shipping_admin_skus_path) %>
+            </li>
+
+            <li>
+              <%= link_to('品牌管理', shipping_admin_brands_path) %>
+            </li>
+
+            <li>
+              <%= link_to('货品类别管理', shipping_admin_categories_path) %>
+            </li>
+
+            <li>
+              <%= link_to('公告管理', news_index_path) %>
+            </li>
+
+            <li>
+              <%= link_to('用户管理', search_users_users_manager_index_path) %>
+            </li>
+
+            <li>
+              <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                  <i class="icon-off"></i>
+                  <span><%= current_user.name%>, 登出</span>
+              <% end unless !current_user %>
+            </li>
+            <% end %>
+
+          </ul>
+
+      </div><!-- /collapse navbar-collapse navbar-responsive-collapse -->
+    </div><!-- /container -->
+  </div><!-- /navbar navbar-default -->
+</div><!-- /header -->

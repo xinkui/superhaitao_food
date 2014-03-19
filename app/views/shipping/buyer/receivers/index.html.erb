@@ -1,0 +1,48 @@
+<% title '收件人列表' %>
+
+<div class="headline">
+  <h3>收件人列表</h3>
+</div>
+<table class="table table-striped" id="receiversTable">
+  <thead>
+  <tr>
+    <th>选择</th>
+    <th>名称</th>
+    <th>省份</th>
+    <th>城市</th>
+    <th>地区</th>
+    <th>地址</th>
+    <th>邮编</th>
+    <th>电话</th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @receivers.each do |receiver| %>
+      <tr>
+        <td>
+          <i class="icon-hand-right"></i>
+          <%= link_to_function '选择', "choose_receiver('" + receiver.id.to_s + "',
+            '" + receiver.show_receiver_message + "')", :class => 'color-orange' %>
+        </td>
+        <td><%= receiver.name %></td>
+        <td><%= receiver.province.name %></td>
+        <td><%= receiver.city.name %></td>
+        <td><%= receiver.district.name %></td>
+        <td><%= receiver.address %></td>
+        <td><%= receiver.zip_code %></td>
+        <td><%= receiver.phone %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_shipping_buyer_receiver_path(receiver), :class => 'btn-u btn-u-green', :name => 'btn_edit' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), shipping_buyer_receiver_path(receiver),
+                      :method => :delete, :data => { :confirm => t("helpers.links.confirm") },
+                      :class => 'btn-u btn-u-red', :name => 'btn_delete' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")), new_shipping_buyer_receiver_path, :class => 'btn-u' %>
+<%= link_to '返回', edit_users_manager_path(current_user), {:class => 'btn', :id => 'btn-back'} %>

@@ -1,0 +1,31 @@
+<% title '登陆超级海淘' %>
+
+<!--=== Content Part ===-->
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name),
+            :html => {:class => 'reg-page'} do |f| %>
+        <h3>登陆超级海淘</h3>
+        <%= f.input :name, :label => false, :wrapper => :reg do %>
+            <%= content_tag :span, :class => 'input-group-addon', :wrapper => :append do %>
+                <i class="icon-user"></i>
+            <% end %>
+            <%= f.input_field :name, :placeholder => '用户名' %>
+        <% end %>
+        <%= f.input :password, :label => false, :wrapper => :reg do %>
+            <%= content_tag :span, :class => 'input-group-addon', :wrapper => :append do %>
+                <i class="icon-lock"></i>
+            <% end %>
+            <%= f.input_field :password, :placeholder => '密码，最少8个字符' %>
+        <% end %>
+        <div class="controls form-inline">
+          <label class="checkbox"></label>
+          <%= f.button :submit, '登陆', :class => 'btn-u pull-right' %>
+        </div>
+        <hr />
+        <h4>忘记密码?</h4>
+        <p>没关系, <%= link_to '请点击此处', new_password_path(resource_name), :class => 'color-green' %> 重置您的密码。</p>
+    <% end %>
+  </div><!--/row-fluid-->
+</div><!--/container-->
+<!--=== End Content Part ===-->

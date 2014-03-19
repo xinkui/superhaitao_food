@@ -1,0 +1,33 @@
+<% title '查看用户' %>
+
+<div class="headline">
+  <h3>查看用户</h3>
+</div>
+
+<p>
+  <strong>名称:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>邮箱:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>电话:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>角色:</strong>
+  <%= @user.get_role %>
+</p>
+
+<p>
+  <strong>状态:</strong>
+  <%= @user.get_state %>
+</p>
+
+<%= link_to '编辑', { controller: 'users/manager', action: 'edit_admin', id: @user.id }, :class => 'btn-u' %>
+<%= link_to '返回', search_users_users_manager_index_path, :class => 'btn-u' %>

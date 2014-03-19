@@ -1,0 +1,52 @@
+<% title '订单确认' %>
+
+<div class="headline">
+  <h3>
+    订单确认
+  </h3>
+</div>
+
+<%= simple_form_for @order, :url => url_for(:action => :save_order, :controller => :orders),
+                    :method => :post do |f| %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-8">
+        <%= button_tag :class => 'btn-u', :id => 'submit' do %>
+            <i class="icon-check"></i>
+            确认并生成订单
+        <% end %>
+      </div>
+    </div>
+
+    <hr>
+
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>德国境内快递公司</th>
+        <th>德国境内快递单号</th>
+        <th>货品重量(KG)</th>
+        <th>入库时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @items.each do |item| %>
+          <tr>
+            <td>
+              <input name="item_list[]" type="hidden" value="<%= item.id %>"/>
+              <%= item.express_name_internal %>
+            </td>
+            <td>
+              <%= item.express_no_internal %>
+            </td>
+            <td>
+              <%= item.weight %>
+            </td>
+            <td>
+              <%= item.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>

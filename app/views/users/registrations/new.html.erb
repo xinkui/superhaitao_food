@@ -1,0 +1,53 @@
+<% title '注册超级海淘账号' %>
+
+<!--=== Content Part ===-->
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name),
+                          html: {class: 'reg-page'} do |f| %>
+          <%= f.error_notification %>
+          <div class="reg-header">
+            <h3>注册超级海淘账号</h3>
+          </div>
+          <%= f.input :name, label: false, wrapper: :reg do %>
+              <%= content_tag :span, class: 'input-group-addon', wrapper: :append do %>
+                  <i class="icon-user"></i>
+              <% end %>
+              <%= f.input_field :name, placeholder: '用户名' %>
+          <% end %>
+          <%= f.input :email, label: false, wrapper: :reg do %>
+              <%= content_tag :span, class: 'input-group-addon', wrapper: :append do %>
+                  <i class="icon-envelope"></i>
+              <% end %>
+              <%= f.input_field :email, placeholder: '邮箱' %>
+          <% end %>
+          <%= f.input :password, label: false, wrapper: :reg do %>
+              <%= content_tag :span, class: 'input-group-addon', wrapper: :append do %>
+                  <i class="icon-lock"></i>
+              <% end %>
+              <%= f.input_field :password, placeholder: '密码，最少8个字符' %>
+          <% end %>
+          <%= f.input :password_confirmation, label: false, wrapper: :reg do %>
+              <%= content_tag :span, class: 'input-group-addon', wrapper: :append do %>
+                  <i class="icon-key"></i>
+              <% end %>
+              <%= f.input_field :password_confirmation, placeholder: '确认密码' %>
+          <% end %>
+          <%= f.input :recommended, label: false, wrapper: :reg do %>
+              <%= content_tag :span, class: 'input-group-addon', wrapper: :append do %>
+                  <i class="icon-user"></i>
+              <% end %>
+              <%= f.input_field :recommended, placeholder: '如果有推荐人请填写' %>
+          <% end %>
+          <div class="controls form-inline">
+            <label class="checkbox"></label>
+            <%= f.button :submit, '注册', class: 'btn-u pull-right' %>
+          </div>
+          <hr />
+          <p>
+            如果您已经注册了超级海淘，<%= link_to '请点击此处', new_session_path(resource_name), :class => 'color-green' %> 登陆。
+          </p>
+      <% end %>
+    </div><!--/row-fluid-->
+  </div><!--/container-->
+<!--=== End Content Part ===-->

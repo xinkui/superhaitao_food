@@ -1,0 +1,46 @@
+<% title '货品列表' %>
+
+<div class="headline">
+  <h3>货品列表</h3>
+</div>
+<div class="alert alert-warning fade in">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <p><strong>请注意!</strong> 为保证您货品的正确，请将德国境内快递单号与你在购物网站上所购货品的快递单号进行核对，如不明之处请查看帮助信息或联系客服人员。</p>
+  <p>当您的货品到达仓库后，我们会第一时间发送通知邮件!</p>
+</div>
+<%= simple_form_for @order, :url => url_for( :action => 'create', :controller => 'orders'),
+                    :method => :post do |form| %>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-9 form-inline">
+        <input id="btn-create-order" class="btn-u" value="提交订单" type="button"/>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+        <table class="table table-striped table-bordered table-hover">
+          <tr>
+            <th></th>
+            <th>德国境内快递公司</th>
+            <th>德国境内快递单号</th>
+            <th>货品名称</th>
+            <th>货品重量(KG)</th>
+            <th>入库时间</th>
+          </tr>
+
+          <% @items.each do |item| %>
+            <tr>
+              <td>
+                <%= check_box_tag 'item_list[]', item.id %>
+              </td>
+              <td><%= item.express_name_internal %></td>
+              <td><%= item.express_no_internal %></td>
+              <td><%= item.sku.name %></td>
+              <td><%= item.weight %></td>
+              <td><%= item.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+
+<% end %>

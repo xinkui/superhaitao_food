@@ -1,0 +1,23 @@
+<% title '查看货品类别' %>
+
+<div class="headline">
+  <h3>查看货品类别</h3>
+</div>
+
+<p>
+  <strong>中文名:</strong>
+  <%= @category.name_cn %>
+</p>
+
+<p>
+  <strong>英文名:</strong>
+  <%= @category.name_en %>
+</p>
+
+<p>
+  <strong>备注:</strong>
+  <%= @category.remark %>
+</p>
+
+<%= link_to '编辑', edit_shipping_admin_category_path(@category), class: 'btn-u' %>
+<%= link_to '返回', shipping_admin_categories_path, class: 'btn-u' %>

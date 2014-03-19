@@ -1,0 +1,40 @@
+<%= simple_form_for ['shipping_admin', @sku] do |f| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :name %>
+        <%= f.input :name_en %>
+        <%= f.input :length, wrapper: :append do %>
+            <%= f.input_field :length %>
+            <%= content_tag :span, '厘米', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.input :width, wrapper: :append do %>
+            <%= f.input_field :width %>
+            <%= content_tag :span, '厘米', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.input :height, wrapper: :append do %>
+            <%= f.input_field :height %>
+            <%= content_tag :span, '厘米', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.input :actual_weight, wrapper: :append do %>
+            <%= f.input_field :actual_weight %>
+            <%= content_tag :span, 'KG', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.input :purchase_price, wrapper: :append do %>
+            <%= f.input_field :purchase_price %>
+            <%= content_tag :span, '￥', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.association :brand, :collection => Brand.all, :label_method => :name_cn %>
+        <%= f.association :category, :collection => Category.all, :label_method => :name_cn %>
+        <%= f.input :made_in_germany, as: :boolean %>
+        <%= f.input :remark %>
+        <%= f.input :barcode %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <input type="button" class="btn-u" value="保存" id="btn_submit" name="button"/>
+      </div>
+    </div>
+<% end %>

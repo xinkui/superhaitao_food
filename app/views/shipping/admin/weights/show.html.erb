@@ -1,0 +1,13 @@
+<% title '显示重量' %>
+
+<div class="headline">
+  <h3>显示重量</h3>
+</div>
+
+<p>
+  <strong>重量:</strong>
+  <%= @weight.weight %>
+</p>
+
+<%= link_to '编辑', edit_shipping_admin_weight_path(@weight), :class => 'btn-u' %>
+<%= link_to '返回', shipping_admin_weights_path, :class => 'btn-u' %>

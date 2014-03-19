@@ -1,0 +1,23 @@
+<% title '忘记密码' %>
+
+<!--=== Content Part ===-->
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name),
+            :html => { :method => :post, :class => 'reg-page' }) do |f| %>
+        <%= f.error_notification %>
+        <h3>忘记密码？</h3>
+        <%= f.input :email, :label => false, :wrapper => :reg do %>
+            <%= content_tag :span, :class => 'input-group-addon', :wrapper => :append do %>
+                <i class="icon-envelope"></i>
+            <% end %>
+            <%= f.input_field :email, :placeholder => '邮箱' %>
+        <% end %>
+        <div class="controls form-inline">
+            <label class="checkbox"></label>
+            <%= f.button :submit, '提交', :class => 'btn-u pull-right' %>
+        </div>
+    <% end %>
+  </div><!--/row-fluid-->
+</div><!--/container-->
+<!--=== End Content Part ===-->

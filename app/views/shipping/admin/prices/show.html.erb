@@ -1,0 +1,18 @@
+<% title '查看价格' %>
+
+<div class="headline">
+  <h3>查看价格</h3>
+</div>
+
+<p>
+  <strong>重量:</strong>
+  <%= @price.weight.weight %>
+</p>
+
+<p>
+  <strong>价格:</strong>
+  <%= @price.price %>
+</p>
+
+<%= link_to '编辑', edit_shipping_admin_price_path(@price), :class => 'btn-u' %>
+<%= link_to '返回', shipping_admin_prices_path, :class => 'btn-u' %>

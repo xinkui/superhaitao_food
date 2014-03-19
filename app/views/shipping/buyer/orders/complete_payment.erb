@@ -1,0 +1,57 @@
+<% title '支付完成' %>
+
+<div class="headline">
+  <h3>
+    支付完成
+  </h3>
+</div>
+<div class="alert alert-warning fade in">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <p>当您的订单审核完成并发货成功后，我们会第一时间发送通知邮件!</p>
+</div>
+<div>
+  <% if @status == 'payment success' %>
+      <div class="text-success h2">
+          <i class="icon-ok"></i>
+          <strong>您已支付成功！付款金额：<%= @order.total_price %>元</strong>
+      </div>
+      <br/>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style_32x32">
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_tsina"></a>
+      </div>
+      <h4>
+        &nbsp;&nbsp;
+        <i class="icon-hand-right"></i>
+        <%= link_to '分享购物成果即可赚钱，具体规则请查看本站帮助界面', point_guide_shipping_buyer_helps_path, class: 'color-orange h4' %>
+      </h4>
+      <script type="text/javascript" >
+          var jiathis_config={
+              url:"http://www.superhaitao.com",
+              title:"亲们! 我从欧洲刚海淘了一件商品,你也来试试, 网址是:www.superhaitao.com, 我的海淘ID是:<%= current_user.name %>, 订单号是:<%= @order.number %>, 超级海淘是一家最专业的欧洲海淘服务提供商。",
+              boldNum:2,
+              pic:"http://www.superhaitao.com/assets/logo-e90f061100fbafcce406b443ccf6dc15.png",
+              shortUrl:false,
+              hideMore:true
+          }
+      </script>
+      <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+
+  <% elsif @status == 'payment failed' %>
+      <div class="text-success h2">
+          <i class="fa-exclamation-triangle"></i>
+          <strong>付款失败！请重新付款。</strong>
+      </div>
+  <% elsif @status == 'save failed' %>
+      <div class="text-success h2">
+          <i class="fa-exclamation-triangle"></i>
+          <strong>数据保存失败！请联系管理员</strong>
+      </div>
+  <% end %>
+</div>
+<br/>
+<br/>
+<br/>
+<%= link_to '查看订单详情', shipping_buyer_orders_path, :class => 'btn-u' %>

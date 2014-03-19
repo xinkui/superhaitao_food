@@ -1,0 +1,8 @@
+en:
+  message:
+    item:
+      user_is_not_exist:  '所属用户不存在'
+      created_successfully: '货品保存成功'
+  will_paginate:
+    previous_label: "Previous"
+    next_label: "Next"

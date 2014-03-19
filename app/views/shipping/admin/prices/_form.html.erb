@@ -1,0 +1,18 @@
+<%= simple_form_for ['shipping_admin', @price] do |f| %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.association :weight, :label_method => lambda {|weight| weight.weight.to_s + ' KG'} %>
+      <%= f.input :price, wrapper: :append do %>
+        <%= content_tag :span, '￥', :class => 'input-group-addon' %>
+        <%= f.input_field :price %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.button :submit, :class => 'btn-u' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= simple_form_for @user, url: local_assigns[:url_path] do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :name, disabled: local_assigns[:change_point] ? true : false %>
+        <%= f.input :email, disabled: local_assigns[:change_point] ? true : false %>
+        <%= f.input :password, disabled: local_assigns[:url_path].to_s.index('update_admin') ? true : false %>
+        <%= f.input :password_confirmation, disabled: local_assigns[:url_path].to_s.index('update_admin') ? true : false %>
+        <%= f.input :phone %>
+        <% if @user.role == 'buyers' %>
+            <%= f.input :point %>
+            <%= f.input :balance %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.button :submit, :class => 'btn-u' %>
+      </div>
+    </div>
+<% end %>

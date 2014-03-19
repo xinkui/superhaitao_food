@@ -1,0 +1,17 @@
+<%= simple_form_for ['shipping_admin', @weight] do |f| %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :weight, :wrapper => :append do %>
+          <%= f.input_field :weight %>
+          <%= content_tag :span, 'KG', :class => 'input-group-addon' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+        <%= f.button :submit, :class => 'btn-u' %>
+    </div>
+  </div>
+<% end %>

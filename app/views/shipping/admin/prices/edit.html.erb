@@ -1,0 +1,10 @@
+<% title '编辑价格' %>
+
+<div class="headline">
+  <h3>编辑价格</h3>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to '显示', shipping_admin_price_path(@price), :class => 'btn-u' %>
+<%= link_to '返回', shipping_admin_prices_path, :class => 'btn-u' %>

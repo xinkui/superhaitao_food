@@ -1,0 +1,16 @@
+<%= simple_form_for ['shipping_admin', @category] do |f| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :name_cn %>
+        <%= f.input :name_en %>
+        <%= f.input :remark %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.button :submit, class: 'btn-u' %>
+      </div>
+    </div>
+<% end %>

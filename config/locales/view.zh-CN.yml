@@ -1,0 +1,20 @@
+zh-CN:
+  message:
+    global:
+      destroy_success:  '删除成功'
+      update_successfully: '更新成功'
+      created_successfully: '保存成功'
+    item:
+      user_is_not_exist:  '所属用户不存在'
+      created_successfully: '货品保存成功'
+    order:
+      item_is_not_null: '至少选择一件货品'
+      create_order_error: '提交订单失败，请重新操作'
+      payment_error:  '支付失败，请重新操作'
+      should_have_receiver: '请选择收件人信息'
+    user:
+      locked_success:  '用户冻结成功'
+      actived_success:  '用户激活成功'
+  will_paginate:
+      previous_label: "上一页"
+      next_label: "下一页"

@@ -1,0 +1,25 @@
+<p>
+  亲爱的 <%= @order.user.name %>!
+</p>
+
+<p>
+  您所购买的货品已经出库, 订单号为: <%= link_to @order.number, shipping_buyer_orders_url %>, 祝您购物愉快, 谢谢!
+</p>
+
+<p>
+  货品明细如下:
+</p>
+
+<% @order.items.each do |item| %>
+    <p>
+      <%= item.sku.name %>
+    </p>
+<% end %>
+
+<p>
+  如果您的email程序不支持链接点击，请将上面的地址拷贝至您的浏览器(如IE)的地址栏进入。 - 超级海淘(http://www.superhaitao.com)
+</p>
+
+<p>
+  (这是一封自动产生的email，请勿回复。)
+</p>

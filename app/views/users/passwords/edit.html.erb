@@ -1,0 +1,32 @@
+<% title '重置密码' %>
+
+<!--=== Content Part ===-->
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name),
+                        :html => { :method => :put, :class => 'reg-page' }) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :reset_password_token, :as => :hidden %>
+        <%= f.full_error :reset_password_token %>
+        <h3>重置密码</h3>
+        <%= f.input :password, :label => false, :wrapper => :append do %>
+            <%= content_tag :span, :class => 'input-group-addon', :wrapper => :append do %>
+                <i class="icon-lock"></i>
+            <% end %>
+            <%= f.input_field :password, :placeholder => '密码，最少8个字符' %>
+        <% end %>
+        <%= f.input :password_confirmation, :label => false, :wrapper => :append do %>
+            <%= content_tag :span, :class => 'input-group-addon', :wrapper => :append do %>
+                <i class="icon-key"></i>
+            <% end %>
+            <%= f.input_field :password_confirmation, :placeholder => '确认密码' %>
+        <% end %>
+        <div class="controls form-inline">
+          <label class="checkbox"></label>
+          <%= f.button :submit, '提交', :class => 'btn-u pull-right' %>
+        </div>
+        <hr />
+    <% end %>
+  </div><!--/row-fluid-->
+</div><!--/container-->
+<!--=== End Content Part ===-->

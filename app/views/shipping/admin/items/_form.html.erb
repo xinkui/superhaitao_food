@@ -1,0 +1,102 @@
+<div class="headline">
+  <h4>
+    货品信息
+  </h4>
+</div>
+
+<%= simple_form_for ['shipping_admin', @item] do |f| %>
+
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.association :user, as: 'string',
+                          input_html: {id: 'user_name', name: 'user_name', value: @item.try(:user).try(:name)} %>
+        <%= f.input :remark %>
+        <%= f.input :express_name_internal %>
+      </div>
+      <div class="col-md-5">
+        <%= f.input :weight, :wrapper => :append do %>
+            <%= f.input_field :weight %>
+            <%= content_tag :span, 'KG', :class => 'input-group-addon' %>
+        <% end %>
+        <%= f.input :cargo_space %>
+        <%= f.input :express_no_internal %>
+      </div>
+    </div>
+
+    <div class="headline">
+      <h4>
+        sku信息
+      </h4>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.input :id, as: :hidden %>
+        <%= f.input :sku_id, as: :hidden %>
+        <%= f.association :sku, as: 'string', label: 'SKU号',
+                          input_html: { id: 'barcode', name: 'barcode', value: @item.try(:sku).try(:barcode) } %>
+      </div>
+      <div class="col-md-5">
+        <%= link_to '新增SKU', new_shipping_admin_sku_path, {target: '_blank', class: 'btn-u'} %>
+      </div>
+    </div>
+
+    <div id="div-sku-message" class="alert alert-danger fade in" style="display: none">
+      没有找到SKU码，请重新输入或添加SKU信息
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label '名称' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-name">
+          <%= @item.try(:sku).try(:name) %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label '长(厘米)' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-length">
+          <%= @item.try(:sku).try(:length) %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label '宽(厘米)' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-width">
+          <%= @item.try(:sku).try(:width) %>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label '高(厘米)' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-height">
+          <%= @item.try(:sku).try(:height) %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label '体积(厘米²)' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-volume">
+          <%= @item.try(:sku).try(:volume) %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label '实际重量(KG)' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-actual_weight">
+          <%= @item.try(:sku).try(:actual_weight) %>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label '备注' %>
+        <label class="string optional col-md-8 control-value-label" id="sku-remark">
+          <%= @item.try(:sku).try(:remark) %>
+        </label>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-6">
+        <input type="button" value="保存" id="btn-save-item" class="btn-u"/>
+      </div>
+    </div>
+<% end %>

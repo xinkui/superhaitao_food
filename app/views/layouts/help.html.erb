@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html lang="en" class="ie7" xmlns:wb="http://open.weibo.com/wb"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie8" xmlns:wb="http://open.weibo.com/wb"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9" xmlns:wb="http://open.weibo.com/wb"> <![endif]-->
+<!--[if !IE]>
+<html xmlns:wb="http://open.weibo.com/wb">  <![endif]-->
+<%= render :partial => 'shared/head' %>
+<body>
+<div class="top">
+
+</div>
+<%= render :partial => 'shared/header' %>
+
+<div class="map-box-space">
+
+</div>
+
+
+<div id="superhaitao_maindiv" class="container margin-bottom-5">
+  <%= bootstrap_flash %>
+  <%= yield %>
+</div>
+
+<%= render :partial => 'shared/footer' %>
+
+</body>
+</html>

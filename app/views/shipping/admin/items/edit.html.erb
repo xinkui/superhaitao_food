@@ -1,0 +1,10 @@
+<% title '编辑货品' %>
+
+<div class="headline">
+  <h3>编辑货品</h3>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to '显示', edit_shipping_admin_item_path(@item), :class => 'btn-u' %>
+<%= link_to '返回', shipping_admin_items_path, :class => 'btn-u' %>

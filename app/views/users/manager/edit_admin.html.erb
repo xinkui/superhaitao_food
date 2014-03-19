@@ -1,0 +1,10 @@
+<% title '编辑用户' %>
+
+<div class="headline">
+  <h3>编辑用户</h3>
+</div>
+
+<%= render 'form_admin', url_path: '/users/manager/update_admin/?id=' + @user.id.to_s, change_point: params[:change_point] %>
+
+<%= link_to '显示', { controller: 'users/manager', action: 'show_admin', id: @user.id }, :class => 'btn-u' %>
+<%= link_to '返回', search_users_users_manager_index_path, :class => 'btn-u' %>

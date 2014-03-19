@@ -1,0 +1,32 @@
+<% title '价格列表' %>
+
+<div class="headline">
+    <h3>价格列表</h3>
+</div>
+
+<%= link_to '新增', new_shipping_admin_price_path, :class => 'btn-u' %>
+
+<br/><br/>
+
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>重量</th>
+    <th>价格</th>
+    <th></th>
+  </tr>
+
+  <% @prices.each do |price| %>
+    <tr>
+      <td><%= price.weight.weight %></td>
+      <td><%= price.price %></td>
+      <td>
+        <%= link_to '显示', shipping_admin_price_path(price), :class => 'btn-u' %>
+        <%= link_to '编辑', edit_shipping_admin_price_path(price), :class => 'btn-u' %>
+        <%= link_to '删除', shipping_admin_price_path(price), method: :delete, data: { confirm: '你确定吗?' }, :class => 'btn-u' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @prices %>
+
+<%= link_to '新增', new_shipping_admin_price_path, :class => 'btn-u' %>

@@ -1,0 +1,16 @@
+<%= simple_form_for(@news) do |f| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :title %>
+        <%= f.input :summary, input_html: { style: 'height:120px' } %>
+        <%= f.input :content, input_html: { style: 'height:120px' } %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.button :submit, class: 'btn-u' %>
+      </div>
+    </div>
+<% end %>

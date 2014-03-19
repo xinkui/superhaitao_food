@@ -1,0 +1,192 @@
+<% title '首页' %>
+
+<div id="sequence-theme" class="sequence-inner">
+  <div id="sequence">
+    <%= image_tag 'unify/bt-prev1.png', class: 'prev', alt: 'Previous', style: 'display: inline;' %>
+    <%= image_tag 'unify/bt-next1.png', class: 'next', alt: 'Next', style: 'display: inline' %>
+    <ul style="width: 100%; height: 100%; position: relative;">
+
+      <li class="animate-in">
+        <div class="info" style="">
+          <h2>最便捷的欧洲转运</h2>
+
+          <p>免预申报！！！免费提供入库清点！！！开启快速，省钱的欧洲海淘之旅！</p>
+          <%= link_to shipping_buyer_helps_path do %>
+              <i class="icon-hand-right"></i>
+              <span class="color-orange">从这里上手</span>
+          <% end %>
+        </div>
+        <%= image_tag 'unify/aeroplane.png', class: 'aeroplane', alt: 'Aeroplane' %>
+      </li>
+
+      <li>
+        <div class="info" style="">
+          <h2>最赚钱的海淘体验</h2>
+
+          <p>注册送钱，推荐送钱，下单送钱，转发、晒单还送钱，买不停，送不停！</p>
+          <%= link_to point_guide_shipping_buyer_helps_path do %>
+              <i class="icon-hand-right"></i>
+              <span class="color-orange">赚取积分攻略</span>
+          <% end %>
+        </div>
+        <%= image_tag 'unify/balloon.png', class: 'balloon', alt: 'Balloon' %>
+      </li>
+
+      <li>
+        <div class="info" style="">
+          <h2>最轻松的高品质生活享受</h2>
+
+          <p>动动鼠标，就能成为高大上，您还等什么？！</p>
+          <%= link_to goods_guide_shipping_buyer_helps_path do %>
+              <i class="icon-hand-right"></i>
+              <span class="color-orange">推荐货品导购</span>
+          <% end %>
+        </div>
+        <%= image_tag 'unify/kite.png', class: 'aeroplane', alt: 'Kite' %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="margin-bottom-20"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+          <h2 class="panel-title">新闻公告</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <table class="table">
+              <tbody>
+                <% @news.each do |new| %>
+                    <tr>
+                      <td>
+                        <%= link_to new.title, news_path(new), class: 'color-orange' %>
+                        <br/>
+                        <%= new.summary %>
+                      </td>
+                      <td>
+                        <%= new.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+                      </td>
+                    </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+          <h2 class="panel-title">上手进阶教程</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <%= image_tag 'home_help.jpg', class: 'img-responsive' %>
+            </div>
+            <div class="col-sm-8">
+              <h3>泡上一杯茶，轻松学习</h3>
+
+              <div class="col-sm-6">
+                <ul class="list-unstyled">
+                  <li class="h4"><%= link_to '新手上路', shipping_buyer_helps_path, class: 'color-orange' %></li>
+                  <li class="h4"><%= link_to '超级海淘简单上手攻略', superhaitao_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                  <li class="h4"><%= link_to '进阶-如何才能减少被税', tax_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                </ul>
+              </div>
+
+              <div class="col-sm-6">
+                <ul class="list-unstyled">
+                  <li class="h4"><%= link_to '运费说明', price_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                  <li class="h4"><%= link_to '包装套餐说明', package_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                  <li class="h4"><%= link_to '积分赚取全攻略', point_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+          <h2 class="panel-title">导购资讯</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <%= image_tag 'home_price.jpg', class: 'img-responsive margin-bottom-20' %>
+            </div>
+            <div class="col-sm-8">
+              <h3>热门商品和热门欧洲购物网站介绍</h3>
+
+              <div class="col-sm-12">
+                <ul class="list-unstyled">
+                  <li class="h4"><%= link_to '热门货品导购指南', goods_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                  <li class="h4"><%= link_to '欧洲主要购物网站全攻略', shopping_guide_shipping_buyer_helps_path, class: 'color-orange' %></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-blue margin-bottom-40">
+        <div class="panel-heading">
+          <h2 class="panel-title">合作伙伴</h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3">
+              <%= image_tag 'partner/dhl_logo.gif', class: 'img-responsive' %>
+            </div>
+            <div class="col-md-3">
+              <%= image_tag 'partner/bpost_logo.jpg', class: 'img-responsive' %>
+            </div>
+            <div class="col-md-3">
+              <%= image_tag 'partner/alipay_logo.png', class: 'img-responsive' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="headline"><h3>联系我们</h3></div>
+      <ul class="list-unstyled margin-bottom-50">
+        <li class="h5">
+          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1926342197&site=qq&menu=yes" class="color-orange">
+            <img border="0" src="http://wpa.qq.com/pa?p=2:1926342197:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+            超级海淘客服1
+          </a>
+        </li>
+        <li class="h5">
+          <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1799352596&site=qq&menu=yes" class="color-orange">
+            <img border="0" src="http://wpa.qq.com/pa?p=2:1799352596:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+            超级海淘客服2
+          </a>
+        </li>
+        <li class="h5"><i class="icon-phone color-orange icon-fixed-width"></i> 0049—1796390366</li>
+        <li class="h5"><i class=" icon-globe color-orange icon-fixed-width"></i> <%= GlobalMessage.get_warehouse_address %></li>
+      </ul>
+
+      <div class="headline"><h3>关注我们</h3></div>
+      <ul class="list-unstyled">
+        <li>
+          <p class="h4">新浪微博：</p>
+          <wb:follow-button uid="3944832519" type="red_1" width="100%" height="64"></wb:follow-button>
+        </li>
+        <li>
+          <p class="h4">微信二维码：</p>
+          <%= image_tag 'weixin.jpeg', class: 'img-responsive margin-bottom-20' %>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+</div>

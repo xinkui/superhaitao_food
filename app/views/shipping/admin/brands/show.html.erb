@@ -1,0 +1,23 @@
+<% title '查看品牌' %>
+
+<div class="headline">
+  <h3>查看品牌</h3>
+</div>
+
+<p>
+  <strong>中文名:</strong>
+  <%= @brand.name_cn %>
+</p>
+
+<p>
+  <strong>英文名:</strong>
+  <%= @brand.name_en %>
+</p>
+
+<p>
+  <strong>备注:</strong>
+  <%= @brand.remark %>
+</p>
+
+<%= link_to '编辑', edit_shipping_admin_brand_path(@brand), class: 'btn-u' %>
+<%= link_to '返回', shipping_admin_brands_path, class: 'btn-u' %>

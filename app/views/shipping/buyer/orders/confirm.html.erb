@@ -1,0 +1,171 @@
+<% title '完善订单信息' %>
+
+<div class="headline">
+  <h3>
+    完善订单信息
+  </h3>
+</div>
+
+<%= simple_form_for @order, url: url_for(action: :fix_order), method: :post do |f| %>
+    <div class="headline">
+      <h4>
+        订单信息
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group number optional order_number">
+          <label class="number optional col-md-4 control-label" for="order_number">
+            订单编号
+          </label>
+
+          <div class="col-md-8">
+            <label class="number optional control-label" id="order_number">
+              <%= @order.number %>
+            </label>
+          </div>
+        </div>
+        <div class="form-group traded_at optional order_traded_at">
+          <label class="traded_at optional col-md-4 control-label" for="order_traded_at">
+            创建时间
+          </label>
+
+          <div class="col-md-8">
+            <label class="traded_at optional control-label" id="order_traded_at">
+              <%= @order.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+            </label>
+          </div>
+        </div>
+        <div class="form-group traded_at optional order_traded_at">
+          <label class="traded_at optional col-md-4 control-label" for="order_traded_at">
+            重量(KG)
+          </label>
+
+          <div class="col-md-8">
+            <label class="traded_at optional control-label" id="order_traded_at">
+              <%= @order.get_items_weight %>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="headline">
+      <h4>
+        增值服务
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-warning fade in">
+          <p>
+            <strong>
+              免费项目:
+            </strong>
+            验货服务,原价为
+                <strong class="color-red" style="text-decoration:line-through;">
+                  ￥30元
+                </strong>
+            ,现价
+                <strong class="color-green1">
+                  ￥0元
+                </strong>
+            ; 称重服务,原价为
+                <strong class="color-red" style="text-decoration:line-through;">
+                  ￥10
+                </strong>
+            元,现价
+                <strong class="color-green1">
+                  ￥0元.
+                </strong>
+          </p>
+          <p><strong>仓储费用:</strong> 当货品在仓库的滞留时间超过45天, 每天加收<strong class="color-green1">￥10元</strong>仓储费用!</p>
+          <p><strong>加固服务:</strong> 包装加固费用: 0-7KG<strong class="color-green1">免费</strong>, 8-15KG收取<strong class="color-green1">￥20元</strong>, 16-30KG收取<strong class="color-green1">￥50元</strong></p>
+          <p><strong>气柱收费:</strong> 气柱每个收取<strong class="color-green1">￥5元</strong></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <% warehouse_charges = @order.cal_warehouse_charges %>
+        <% if warehouse_charges > 0 %>
+            <div id="div_firm_package" class="form-group optional">
+              <label class="optional col-md-5 control-label">
+                仓储费用：
+              </label>
+              <div class="col-md-7">
+                <label class="checkbox">
+                  <label id="lbl_firm_package_message">
+                    需收取费用人民币<strong class="color-green1"><%= warehouse_charges %>元</strong>.
+                  </label>
+                </label>
+              </div>
+            </div>
+        <% end %>
+        <div id="div_firm_package" class="form-group optional">
+          <label class="optional col-md-5 control-label">
+            加固包装：
+          </label>
+          <div class="col-md-7">
+            <label class="checkbox">
+              <input type="checkbox" name="chk_firm_package" id="chk_firm_package" />
+              <label id="lbl_firm_package_message">
+                需收取费用<strong class="color-green1">￥</strong><label id="strong_firm_package_charges"><strong class="color-green1"><%= @order.cal_firm_package_charges %></strong></label><strong class="color-green1">元</strong>.
+              </label>
+            </label>
+          </div>
+        </div>
+        <div id="div_balloon" class="form-group optional">
+          <label class="optional col-md-5 control-label">
+            购买气柱(5元/个)：
+          </label>
+          <div class="col-md-7">
+            <input type="text" name="txt_balloon" id="txt_balloon" placeholder="请输入需要购买的数量" />
+          </div>
+        </div>
+        <div id="div_error_message" class="form-group optional">
+          <label class="optional col-md-5 control-label">
+          </label>
+          <div class="col-md-7">
+              <span class="help-inline text-danger" id="balloon_format_error" style="display: none">
+                请输入正确格式
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="headline">
+      <h4>
+        收件人
+      </h4>
+    </div>
+    <%= link_to shipping_buyer_receivers_path, {:target => '_blank', :class => 'btn-u'} do %>
+        <i class="icon-signin"></i>
+        选择其他收件人
+    <% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.association :receiver, collection: @show_receivers, label_method: :show_receiver_message, label: false,
+                          checked: @show_receivers.first ? @show_receivers.first.id : '', as: :radio_buttons %>
+        <label class="radio" id="expandReceiverRadio" style="display: none">
+          <input class="radio_buttons optional" id="order_receiver_id_n" name="order[receiver_id]" type="radio"/>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-6">
+        <div class="text-warning" style="font-size: 20px">
+          <strong>
+            您目前订单应付款为: ￥
+          </strong>
+          <label id="lbl_total_price">
+              <%= Price.by_weight(@order.get_items_weight) + @order.cal_warehouse_charges %>
+          </label>
+          <%= f.input :id, as: 'hidden' %>
+          <%= button_tag id: :btn_submit_order, class: 'btn-u pull-right' do %>
+              <i class="icon-check"></i>
+              提交
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>

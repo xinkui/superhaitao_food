@@ -1,0 +1,73 @@
+<% title '查看SKU' %>
+
+<div class="headline">
+  <h3>查看SKU</h3>
+</div>
+
+<p>
+  <strong>名称:</strong>
+  <%= @sku.name %>
+</p>
+
+<p>
+  <strong>外文名称:</strong>
+  <%= @sku.name_en %>
+</p>
+
+<p>
+  <strong>长:</strong>
+  <%= @sku.length %> (厘米)
+</p>
+
+<p>
+  <strong>宽:</strong>
+  <%= @sku.width %> (厘米)
+</p>
+
+<p>
+  <strong>高:</strong>
+  <%= @sku.height %> (厘米)
+</p>
+
+<p>
+  <strong>体积:</strong>
+  <%= @sku.volume %> (平方厘米)
+</p>
+
+<p>
+  <strong>实际重量:</strong>
+  <%= @sku.actual_weight %> (KG)
+</p>
+
+<p>
+  <strong>进价:</strong>
+  <%= @sku.purchase_price %>
+</p>
+
+<p>
+  <strong>品牌:</strong>
+  <%= @sku.brand.try(:name_cn) %>
+</p>
+
+<p>
+  <strong>分类:</strong>
+  <%= @sku.category.try(:name_cn) %>
+</p>
+
+<p>
+  <strong>德国制造:</strong>
+  <%= @sku.show_made_in_germany %>
+</p>
+
+<p>
+  <strong>条形码:</strong>
+  <%= @sku.barcode %>
+</p>
+
+<p>
+  <strong>备注:</strong>
+  <%= @sku.remark %>
+</p>
+
+<%= link_to '编辑', edit_shipping_admin_sku_path(@sku), :class => 'btn-u' %>
+<%= link_to '返回', shipping_admin_skus_path, :class => 'btn-u' %>

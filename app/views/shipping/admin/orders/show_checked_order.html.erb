@@ -1,0 +1,144 @@
+<% title '审核订单信息' %>
+
+<div class="headline">
+  <h3>
+    审核订单信息
+  </h3>
+</div>
+
+<%= simple_form_for @order, url: checked_order_shipping_admin_orders_path do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :number %>
+        <label class="string optional col-md-8 control-value-label" for="order_number">
+          <%= @order.number %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :total_price %>
+        <label class="string optional col-md-8 control-value-label" for="order_number">
+          <%= @order.total_price %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :state %>
+        <label class="string optional col-md-8 control-value-label" for="order_number">
+          <%= @order.get_state %>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label '总重量' %>
+        <label class="string optional col-md-8 control-value-label" for="order_created_at">
+          <%= @order.get_items_weight %>(KG)
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :created_at %>
+        <label class="string optional col-md-8 control-value-label" for="order_created_at">
+          <%= @order.created_at ? @order.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s : '' %>
+        </label>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :traded_at %>
+        <label class="string optional col-md-8 control-value-label" for="order_traded_at">
+          <%= @order.traded_at ? @order.traded_at.strftime('%Y-%m-%d %H:%M:%S').to_s : ' ' %>
+        </label>
+      </div>
+    </div>
+    <div class="row map-box-space">
+      <div class="col-md-4">
+        <%= f.input :international_waybill_company, collection: [:BPOST, :DHL], include_blank: false %>
+      </div>
+    </div>
+    <div class="row map-box-space">
+      <div class="col-md-4 col-md-offset-8">
+        <%= f.input :id, :as => 'hidden' %>
+        <input type="button" class="btn-u" value="审核完成" id="btn_checked" name="button"/>
+      </div>
+    </div>
+<% end %>
+
+<div class="headline">
+  <h3>
+    增值服务
+  </h3>
+</div>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>费用名称</th>
+    <th>费用价格</th>
+  </tr>
+  </thead>
+
+  <% @order.value_added_services.each do |value_added_service| %>
+      <tr>
+        <td>
+          <%= value_added_service.get_service_name %>
+        </td>
+        <td>
+          <%= value_added_service.price %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+<div class="headline">
+  <h3>
+    货品信息
+  </h3>
+</div>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>所属用户</th>
+    <th>国内转运公司</th>
+    <th>国内转运单号</th>
+    <th>货品重量</th>
+    <th>货品名称</th>
+    <th>货品实际重量</th>
+    <th>货品条形码</th>
+    <th>状态</th>
+    <th></th>
+  </tr>
+  </thead>
+  <% @order.items.find_each do |item| %>
+      <tbody>
+      <tr>
+        <td class="center">
+          <%= item.user.name %>
+        </td>
+        <td>
+          <%= item.express_name_internal %>
+        </td>
+        <td>
+          <%= item.express_no_internal %>
+        </td>
+        <td>
+          <%= item.weight %>
+        </td>
+        <td>
+          <%= item.sku.try(:name) %>
+        </td>
+        <td>
+          <%= item.sku.try(:actual_weight)  %>
+        </td>
+        <td>
+          <%= item.sku.try(:barcode) %>
+        </td>
+        <td>
+          <%= item.get_state %>
+        </td>
+        <td>
+          <% if item.state == 'pending_audit' %>
+            <%= link_to '审核货品', checked_item_shipping_admin_items_path(id: item.id), class: 'btn-u' %>
+          <% end %>
+        </td>
+      </tr>
+      </tbody>
+  <% end %>
+</table>
